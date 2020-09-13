@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bancoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CUENTA">
+    <Key>
+      <PropertyRef Name="id_cuenta" />
+    </Key>
+    <Property Name="id_cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_usuario" Type="Int32" Nullable="false" />
+    <Property Name="numero_cuenta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="saldo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="USUARIO" Relationship="Self.FK_CUENTA_USUARIO" FromRole="CUENTA" ToRole="USUARIO" />
+  </EntityType>
+  <EntityType Name="USUARIO">
+    <Key>
+      <PropertyRef Name="id_usuario" />
+    </Key>
+    <Property Name="id_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="identificacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="clave" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="String" MaxLength="1" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CUENTA" Relationship="Self.FK_CUENTA_USUARIO" FromRole="USUARIO" ToRole="CUENTA" />
+  </EntityType>
+  <Association Name="FK_CUENTA_USUARIO">
+    <End Role="USUARIO" Type="Self.USUARIO" Multiplicity="1" />
+    <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USUARIO">
+        <PropertyRef Name="id_usuario" />
+      </Principal>
+      <Dependent Role="CUENTA">
+        <PropertyRef Name="id_usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bancoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CUENTA" EntityType="Self.CUENTA" />
+    <EntitySet Name="USUARIO" EntityType="Self.USUARIO" />
+    <AssociationSet Name="FK_CUENTA_USUARIO" Association="Self.FK_CUENTA_USUARIO">
+      <End Role="USUARIO" EntitySet="USUARIO" />
+      <End Role="CUENTA" EntitySet="CUENTA" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

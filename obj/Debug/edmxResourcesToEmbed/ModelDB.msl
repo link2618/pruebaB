@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bancoModelStoreContainer" CdmEntityContainer="bancoEntities">
+    <EntitySetMapping Name="CUENTA">
+      <EntityTypeMapping TypeName="bancoModel.CUENTA">
+        <MappingFragment StoreEntitySet="CUENTA">
+          <ScalarProperty Name="id_cuenta" ColumnName="id_cuenta" />
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="numero_cuenta" ColumnName="numero_cuenta" />
+          <ScalarProperty Name="saldo" ColumnName="saldo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USUARIO">
+      <EntityTypeMapping TypeName="bancoModel.USUARIO">
+        <MappingFragment StoreEntitySet="USUARIO">
+          <ScalarProperty Name="id_usuario" ColumnName="id_usuario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="identificacion" ColumnName="identificacion" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="clave" ColumnName="clave" />
+          <ScalarProperty Name="estado" ColumnName="estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
